@@ -1,0 +1,52 @@
+###################
+# Angular Frontend
+###################
+
+frontend-quacky/node_modules/
+frontend-quacky/dist/
+frontend-quacky/out-tsc/
+frontend-quacky/coverage/
+frontend-quacky/.angular/
+frontend-quacky/*.tsbuildinfo
+frontend-quacky/.env
+
+# Logs
+frontend-quacky/npm-debug.log*
+frontend-quacky/yarn-debug.log*
+frontend-quacky/yarn-error.log*
+
+###################
+# Java Backend
+###################
+
+backend-quacky/target/
+backend-quacky/build/
+backend-quacky/*.class
+backend-quacky/*.log
+
+###################
+# Archives
+###################
+
+*.jar
+*.war
+*.ear
+*.nar
+*.zip
+*.tar.gz
+*.rar
+
+###################
+# JVM crash logs
+###################
+
+hs_err_pid*
+replay_pid*
+
+###################
+# IDE
+###################
+
+.idea/
+.vscode/
+*.iml
