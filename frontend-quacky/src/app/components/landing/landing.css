@@ -1,0 +1,78 @@
+.duck {
+  top: -10%;
+  left: var(--stepLeft, 0%);
+  position: absolute;
+
+  animation-name: duckfall;
+  animation-duration: var(--duration, 7s);
+  animation-delay: var(--delay, 0s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes duckfall {
+  0% {
+    transform: translateY(0) rotate(0deg); /* Start at original top position with no rotation */
+    opacity: 0;
+  }
+
+  5%{
+    transform: translateY(5.5vh) rotate(36deg); /* Start at original top position with no rotation */
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(55vh) rotate(360deg); /* Move down 110vh (off screen) and rotate */
+    opacity: 0.5; /* Optional: fade slightly as it falls */
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg); /* Move down 110vh (off screen) and rotate */
+    opacity: 0; /* Optional: fade slightly as it falls */
+  }
+}
+
+.button {
+  background-color: #1447e6;
+  transform: scale(1);
+  transition: transform 0.2s linear, background-color 0.2s linear;
+}
+
+.button:hover {
+  transform: scale(1.05);
+  background-color: #155dfc;
+}
+
+.quacky {
+  transform: scale(1);
+  animation-name: small-movement;
+  animation-duration: 7s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes small-movement {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(2%, -2%); rotate: 15deg }
+  50% { transform: translate(-2%, 2%); }
+  75% { transform: translate(2%, 2%); }
+  100% { transform: translate(0, 0); }
+}
+
+.main {
+  animation-name: appearance;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+}
+
+@keyframes appearance {
+  0% {
+    transform: translateY(20vh);
+    opacity: 0;
+  }
+
+  100%{
+    transform: translateY(0vh);
+    opacity: 1;
+  }
+}

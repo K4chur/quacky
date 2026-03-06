@@ -1,0 +1,29 @@
+<div class="w-screen h-screen bg-linear-to-t from-black to-gray-900 absolute"></div>
+
+<div class="fixed top-0 left-0 w-screen h-screen pointer-events-none overflow-hidden">
+  @for (duck of ducks; track $index) {
+    <img class="duck blur-[2px]" src="assets/common/ducky_quacky.svg" alt="here was ducky" height="35px" width="35px"
+         [style.--delay]="duck.delay"
+         [style.--duration]="duck.duration"
+         [style.--stepLeft]="duck.stepLeft">
+  }
+</div>
+
+<div class="fixed w-screen h-screen flex items-center justify-center gap-50 main">
+  <div class="text-white">
+    <div>
+      <p class="text-5xl font-bbh" style="font-family: 'BBH Bartle',sans-serif"> QUACKY </p>
+      <p class="font-mono">lets quack quack</p>
+    </div>
+    <div class="flex gap-5 items-center mt-10">
+      <button type="button" class="button cursor-pointer font-mono font-bold rounded-2xl text-center text-xl ps-5 pe-5 p-2 flex gap-2">Ducky enough <img class="w-5" src="assets/common/login.svg" alt="Login Icon"/> </button>
+      <button type="button" class="button cursor-pointer font-mono rounded-2xl text-center text-xl ps-5 pe-5 p-2 flex gap-2">New here <img class="w-5" src="assets/common/new.svg" alt="Reg Icon"/></button>
+    </div>
+  </div>
+  <div class="quacky cursor-pointer" (click)="playQuack()">
+    <img class="w-100 " src="assets/common/ducky_quacky.svg" alt="here was ducky" height="740" width="700">
+  </div>
+</div>
+
+
+
