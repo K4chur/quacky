@@ -1,0 +1,32 @@
+.duck {
+  top: -10%;
+  left: var(--stepLeft, 0%);
+  position: absolute;
+
+  animation-name: duckfall;
+  animation-duration: var(--duration, 7s);
+  animation-delay: var(--delay, 0s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes duckfall {
+  0% {
+    transform: translateY(0) rotate(0deg); /* Start at original top position with no rotation */
+    opacity: 0;
+  }
+
+  5%{
+    transform: translateY(5.5vh) rotate(36deg); /* Start at original top position with no rotation */
+    opacity: 1;
+  }
+
+  50% {
+    transform: translateY(55vh) rotate(360deg); /* Move down 110vh (off screen) and rotate */
+    opacity: 0.5; /* Optional: fade slightly as it falls */
+  }
+  100% {
+    transform: translateY(110vh) rotate(720deg); /* Move down 110vh (off screen) and rotate */
+    opacity: 0; /* Optional: fade slightly as it falls */
+  }
+}

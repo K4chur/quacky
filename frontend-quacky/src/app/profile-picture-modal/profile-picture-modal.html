@@ -1,0 +1,39 @@
+@if (shown()) {
+  <div class="fixed w-screen h-screen flex items-center justify-center text-white font-mono">
+    <div class="bg-gray-800 border border-blue-500 rounded-2xl">
+      <div class="relative flex rounded-t-2xl border-b border-b-blue-500 w-full">
+        <p class="text-2xl m-3 p-1"> Profile picture</p>
+        <div
+          class="cursor-pointer absolute inset-y-0 right-0 border-s border-s-blue-500 transform duration-300 hover:bg-blue-400 rounded-s-2xl rounded-t-2xl group"
+          (click)="onClose()">
+          <button class="m-5" type="button"><img class="cursor-pointer w-5 transform duration-300 group-hover:rotate-90"
+                                                 src="assets/common/close.svg" alt="Close"/></button>
+        </div>
+      </div>
+
+      <div class="flex flex-row gap-20">
+
+        <div class="flex flex-col m-5">
+          <div class="grid grid-cols-3 gap-5 w-fit">
+            @for (pfPic of defaultPfPics; track $index) {
+              <img class="cursor-pointer rounded-full w-24 border-2"
+                   [class]="profilePath() == pfPic ? 'border-blue-800' : ''" src="{{pfPic}}"
+                   alt="One of default avatars"
+                   (click)="picUpdate(pfPic)"/>
+            }
+          </div>
+        </div>
+
+        <div class="flex flex-col m-5 items-center gap-10">
+          <img class="rounded-full w-25 border-2" [src]="profilePath()" alt="Current profile picture"/>
+          <button class="bg-blue-700 p-3 rounded-2xl cursor-pointer flex items-center justify-center gap-2
+      transform duration-200 hover:bg-blue-600 hover:scale-105 font-mono" type="button">
+            Upload photo <img class="w-5" src="assets/common/upload.svg" alt="Upload Icon"/></button>
+        </div>
+        
+      </div>
+
+    </div>
+  </div>
+
+}

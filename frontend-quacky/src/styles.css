@@ -1,3 +1,80 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+
+.main {
+  view-transition-name: rollout;
+}
+
+::view-transition-old(rollout),
+::view-transition-new(rollout) {
+  animation-name: -ua-view-transition-fade-in, appear;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+}
+
+::view-transition-old(rollout) {
+  animation-name: -ua-view-transition-fade-out, disappear;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+}
+
+@keyframes appear {
+  from {
+    transform: translateY(40vh);
+    opacity: 0;
+  }
+}
+@keyframes disappear {
+  to {
+    transform: translateY(-40vh);
+    opacity: 0;
+  }
+}
+
+.rotate {
+  view-transition-name: rotate;
+}
+
+::view-transition-old(rotate),
+::view-transition-new(rotate) {
+  animation-name: -ua-view-transition-fade-in, rotate-in;
+  animation-duration: 0.5s;
+  animation-delay: 0.1s;
+  animation-timing-function: ease-out;
+}
+
+::view-transition-old(rotate) {
+  animation-name: -ua-view-transition-fade-out, rotate-out;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+}
+
+@keyframes rotate-in {
+  from {
+    transform: rotate(-90deg) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes rotate-out {
+  to {
+    transform: rotate(90deg) scale(0);
+    opacity: 0;
+  }
+}
+
+.quacky {
+  transform: scale(1);
+  animation-name: small-movement;
+  animation-duration: 7s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes small-movement {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(2%, -2%); rotate: 15deg }
+  50% { transform: translate(-2%, 2%); }
+  75% { transform: translate(2%, 2%); }
+  100% { transform: translate(0, 0); }
+}

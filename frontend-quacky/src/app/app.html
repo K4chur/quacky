@@ -1,1 +1,14 @@
+<div class="w-screen h-screen bg-linear-to-t from-black to-gray-900 absolute"></div>
+
+<div class="fixed top-0 left-0 w-screen h-screen pointer-events-none overflow-hidden">
+  @for (duck of ducks; track $index) {
+    <img class="duck blur-[2px]" src="assets/common/ducky_quacky.svg" alt="here was ducky" height="35px" width="35px"
+         [style.--delay]="duck.delay"
+         [style.--duration]="duck.duration"
+         [style.--stepLeft]="duck.stepLeft">
+  }
+</div>
+
 <router-outlet></router-outlet>
+
+

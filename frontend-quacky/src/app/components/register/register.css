@@ -1,0 +1,9 @@
+@import 'tailwindcss';
+
+.getIntoBlur {
+  @apply blur-2xl
+}
+
+@keyframes blurIn {
+
+}

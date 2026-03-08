@@ -8,5 +8,9 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.css',
 })
 export class App {
-  protected readonly title = signal('frontend-quacky');
+  ducks = Array.from({ length: 10 }).map((_, i) => ({
+    delay: Math.random() > 0.5 ? `${i * 0.7}s` : `0s`,
+    duration: `${6 + Math.random() * 4}s`,
+    stepLeft: `${i * 10 + 5}%`,
+  }));
 }
