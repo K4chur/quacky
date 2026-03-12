@@ -1,5 +1,6 @@
 @if (shown()) {
-  <div class="fixed w-screen h-screen flex items-center justify-center text-white font-mono">
+  <div class="fixed w-screen h-screen flex items-center justify-center text-white font-mono"
+       [class]="imageChangedEvent ? 'transform duration-700 blur-2xl' : 'transform duration-700'">
     <div class="bg-gray-800 border border-blue-500 rounded-2xl">
       <div class="relative flex rounded-t-2xl border-b border-b-blue-500 w-full">
         <p class="text-2xl m-3 p-1"> Profile picture</p>
@@ -19,21 +20,43 @@
               <img class="cursor-pointer rounded-full w-24 border-2"
                    [class]="profilePath() == pfPic ? 'border-blue-800' : ''" src="{{pfPic}}"
                    alt="One of default avatars"
-                   (click)="picUpdate(pfPic)"/>
+                   (click)="picUpdate(pfPic, null)"/>
             }
           </div>
         </div>
 
         <div class="flex flex-col m-5 items-center gap-10">
-          <img class="rounded-full w-25 border-2" [src]="profilePath()" alt="Current profile picture"/>
+          <img class="rounded-full w-25 h-25 border-2" [src]="profilePath()" alt="Current profile picture"/>
           <button class="bg-blue-700 p-3 rounded-2xl cursor-pointer flex items-center justify-center gap-2
-      transform duration-200 hover:bg-blue-600 hover:scale-105 font-mono" type="button">
+      transform duration-200 hover:bg-blue-600 hover:scale-105 font-mono" type="button" (click)="triggerInput()">
             Upload photo <img class="w-5" src="assets/common/upload.svg" alt="Upload Icon"/></button>
         </div>
-        
+
+        <input type="file" #fileInput class="hidden" accept="image/png, image/jpeg" (change)="fileUpdate($event)"/>
+
       </div>
 
     </div>
+  </div>
+
+  <div class="fixed w-screen h-screen flex items-center justify-center text-white font-mono z-10"
+       [class]="imageChangedEvent ? 'visible' : 'hidden'">
+    <div class="flex flex-col bg-gray-800 border border-blue-500 w-96 h-fit p-6 ">
+      <image-cropper class="p-6 bg-gray-800 [--cropper-overlay-color:#1E2939] [--cropper-color:#000000]"
+                     [imageChangedEvent]="imageChangedEvent"
+                     [maintainAspectRatio]="true"
+                     [aspectRatio]="1"
+                     backgroundColor="#1e2939"
+                     format="png"
+                     (imageCropped)="imageCropped($event)">
+        >
+      </image-cropper>
+      <button class="bg-blue-700 mt-5 p-3 rounded-2xl cursor-pointer flex items-center justify-center
+                    transform duration-200 hover:bg-blue-600 hover:scale-105" (click)="confirmCrop()">Confirm
+      </button>
+    </div>
+
+
   </div>
 
 }

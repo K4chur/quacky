@@ -1,69 +1,72 @@
 <div [class]="showModal ? 'transform duration-700 blur-2xl' : 'transform duration-700'">
-<button class="fixed flex cursor-pointer quacky w-20 ms-6 mt-6 z-10 rotate" type="button" routerLink="/" > <img class="w-20" src="assets/common/ducky_quacky.svg" alt="here was ducky"> </button>
+  <button class="fixed flex cursor-pointer quacky w-20 ms-6 mt-6 z-10 rotate" type="button" routerLink="/"><img
+    class="w-20" src="assets/common/ducky_quacky.svg" alt="here was ducky"></button>
 
-<div class="fixed flex flex-col w-screen h-screen items-center justify-center text-white main">
+  <div class="fixed flex flex-col w-screen h-screen items-center justify-center text-white main">
 
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <div class="flex mb-5 justify-center text-3xl" style="font-family: 'BBH Bartle',sans-serif">
-      Register
-    </div>
-    <div class="bg-gray-800 p-6 border border-blue-500 rounded-2xl w-96">
-      <div class="relative flex mb-10 mt-5 w-full">
-        <input class="border-b-2 focus:outline-none peer/email w-full focus:border-b-blue-400" id="email" type="email"
-               formControlName="email" placeholder=""/>
-        <label class="absolute -translate-y-5 scale-75 hover:cursor-text duration-300 transform
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <div class="flex mb-5 justify-center text-3xl" style="font-family: 'BBH Bartle',sans-serif">
+        Register
+      </div>
+      <div class="bg-gray-800 p-6 border border-blue-500 rounded-2xl w-96">
+        <div class="relative flex mb-10 mt-5 w-full">
+          <input class="border-b-2 focus:outline-none peer/email w-full focus:border-b-blue-400" id="email" type="email"
+                 formControlName="email" placeholder=""/>
+          <label class="absolute -translate-y-5 scale-75 hover:cursor-text duration-300 transform
         peer-focus/email:-translate-y-5 peer-focus/email:scale-75 peer-focus/email:text-blue-400 origin-left
         peer-placeholder-shown/email:translate-y-0 peer-placeholder-shown/email:scale-100 select-none font-mono"
-               for="email">Email address </label>
-      </div>
-      <div class="relative flex mb-10 w-full">
-        <input class="border-b-2 focus:outline-none peer/username w-full focus:border-b-blue-400" id="username"
-               type="text" formControlName="username" placeholder="">
-        <label class="absolute -translate-y-5 scale-75 hover:cursor-text duration-300 transform
+                 for="email">Email address </label>
+        </div>
+        <div class="relative flex mb-10 w-full">
+          <input class="border-b-2 focus:outline-none peer/username w-full focus:border-b-blue-400" id="username"
+                 type="text" formControlName="username" placeholder="">
+          <label class="absolute -translate-y-5 scale-75 hover:cursor-text duration-300 transform
         peer-focus/username:-translate-y-5 peer-focus/username:scale-75 peer-focus/username:text-blue-400 origin-left
         peer-placeholder-shown/username:translate-y-0 peer-placeholder-shown/username:scale-100 select-none font-mono"
-               for="username">Username </label>
-      </div>
-      <div class="relative flex mb-10 w-full">
-        <input class="border-b-2 focus:outline-none peer/password w-full focus:border-b-blue-400" id="password"
-               type="password" formControlName="password" placeholder="">
-        <label class="absolute -translate-y-5 scale-75 hover:cursor-text duration-300 transform
+                 for="username">Username </label>
+        </div>
+        <div class="relative flex mb-10 w-full">
+          <input class="border-b-2 focus:outline-none peer/password w-full focus:border-b-blue-400" id="password"
+                 type="password" formControlName="password" placeholder="">
+          <label class="absolute -translate-y-5 scale-75 hover:cursor-text duration-300 transform
         peer-focus/password:-translate-y-5 peer-focus/password:scale-75 peer-focus/password:text-blue-400 origin-left
         peer-placeholder-shown/password:translate-y-0 peer-placeholder-shown/password:scale-100 select-none font-mono"
-               for="password">Password </label>
-      </div>
-      <div class="relative flex mb-10 w-full">
-        <input class="border-b-2 focus:outline-none peer/confirmPassword w-full focus:border-b-blue-400"
-               id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="">
-        <label class="absolute -translate-y-5 scale-75 hover:cursor-text duration-300 transform
+                 for="password">Password </label>
+        </div>
+        <div class="relative flex mb-10 w-full">
+          <input class="border-b-2 focus:outline-none peer/confirmPassword w-full focus:border-b-blue-400"
+                 id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="">
+          <label class="absolute -translate-y-5 scale-75 hover:cursor-text duration-300 transform
         peer-focus/confirmPassword:-translate-y-5 peer-focus/confirmPassword:scale-75 peer-focus/confirmPassword:text-blue-400 origin-left
         peer-placeholder-shown/confirmPassword:translate-y-0 peer-placeholder-shown/confirmPassword:scale-100 select-none font-mono"
-               for="confirmPassword">Repeat Password </label>
-      </div>
+                 for="confirmPassword">Repeat Password </label>
+        </div>
 
-      <div class="relative flex items-center justify-center mb-5 w-full gap-10">
-        <img [src]="profilePath" class="rounded-full w-25 border-2 border-blue-400" alt="Your profile picture"/>
-        <button class="bg-blue-700 p-3 rounded-2xl w-1/2 h-10 cursor-pointer flex items-center justify-center
+        <div class="relative flex items-center justify-center mb-5 w-full gap-10">
+          <img [src]="profilePath" class="rounded-full w-25 h-25 border-2 border-blue-400" alt="Your profile picture"/>
+          <button class="bg-blue-700 p-3 rounded-2xl w-1/2 h-10 cursor-pointer flex items-center justify-center
           transform duration-200 hover:bg-blue-600 hover:scale-105 font-mono" type="button" (click)="openModal()">
-          Change avatar</button>
+            Change avatar
+          </button>
+        </div>
       </div>
-    </div>
 
-    <div class="flex gap-5 mt-5 w-95">
-      <button class="bg-blue-700 p-3 rounded-2xl w-1/2 cursor-pointer flex items-center justify-center gap-2
+      <div class="flex gap-5 mt-5 w-95">
+        <button class="bg-blue-700 p-3 rounded-2xl w-1/2 cursor-pointer flex items-center justify-center gap-2
       transform duration-200 hover:bg-blue-600 hover:scale-105 font-mono" type="button" routerLink="/login">
-        Login instead <img class="w-5" src="assets/common/login.svg" alt="Login Icon"/></button>
-      <button class="bg-blue-700 p-3 rounded-2xl w-1/2 cursor-pointer flex items-center justify-center gap-2
+          Login instead <img class="w-5" src="assets/common/login.svg" alt="Login Icon"/></button>
+        <button class="bg-blue-700 p-3 rounded-2xl w-1/2 cursor-pointer flex items-center justify-center gap-2
       transform duration-200 hover:bg-blue-600 hover:scale-105 font-mono" type="submit">
-        Register <img class="w-5" src="assets/common/new.svg" alt="Reg Icon"/></button>
-    </div>
-  </form>
+          Register <img class="w-5" src="assets/common/new.svg" alt="Reg Icon"/></button>
+      </div>
+    </form>
 
-</div>
+  </div>
 </div>
 
 
 <app-profile-picture-modal [class]="showModal ? 'transform duration-700 opacity-100' : ''" class="opacity-0"
                            [shown]="showModal" [profilePath]="profilePath"
                            (close)="closeModal()"
-                           (profilePicUpdate)="updateProfilePic($event)"></app-profile-picture-modal>
+                           (profilePathUpdate)="updateProfilePic($event)"
+                           (profileFileUpdate)="updateProfileFile($event)"></app-profile-picture-modal>

@@ -11,6 +11,7 @@ import { ProfilePictureModal } from '../../profile-picture-modal/profile-picture
 })
 export class Register {
   profilePath: string = 'assets/profilePictures/ducky_quacky_avatar_default.png';
+  profileFile: File | null = null;
   showModal = false;
 
   registerForm = new FormGroup({
@@ -35,5 +36,9 @@ export class Register {
 
   protected updateProfilePic($event: string) {
     this.profilePath = $event;
+  }
+
+  protected updateProfileFile($event: File | null) {
+    this.profileFile = $event;
   }
 }
