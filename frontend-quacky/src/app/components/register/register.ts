@@ -1,7 +1,14 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ProfilePictureModal } from '../../profile-picture-modal/profile-picture-modal';
+import { form } from '@angular/forms/signals';
 
 @Component({
   selector: 'app-register',
@@ -14,16 +21,51 @@ export class Register {
   profileFile: File | null = null;
   showModal = false;
 
-  registerForm = new FormGroup({
-    email: new FormControl(''),
-    username: new FormControl(''),
-    password: new FormControl(''),
-    confirmPassword: new FormControl(''),
-    avatar: new FormControl(''),
-  });
+  registerForm: FormGroup;
+  email: FormControl;
+  username;
+  password;
+  confirmPassword;
+  avatar;
 
-  protected onSubmit() {
-    console.log(this.registerForm.value);
+  constructor() {
+    this.email = new FormControl('', [
+      Validators.required,
+      Validators.email,
+    ]);
+    this.username = new FormControl('', [
+      Validators.required,
+      Validators.minLength(6),
+      Validators.maxLength(32),
+    ]);
+    this.password = new FormControl('', [
+      Validators.required,
+      Validators.minLength(6),
+      Validators.maxLength(64),
+    ]);
+    this.confirmPassword = new FormControl('', [
+      Validators.required,
+      Validators.minLength(6),
+      Validators.maxLength(64),
+    ]);
+    this.avatar = new FormControl('');
+
+    this.registerForm = new FormGroup({
+      email: this.email,
+      username: this.username,
+      password: this.password,
+      confirmPassword: this.confirmPassword,
+      avatar: this.avatar,
+    }, {validators: this.passwordMatchValidator()});
+  }
+
+  passwordMatchValidator() {
+    return (formGroup: AbstractControl) => {
+      const password = this.password.value;
+      const confirmPassword = this.confirmPassword.value;
+
+      return password === confirmPassword ? null : { mismatch: true };
+    };
   }
 
   openModal() {
@@ -40,5 +82,11 @@ export class Register {
 
   protected updateProfileFile($event: File | null) {
     this.profileFile = $event;
+  }
+
+  protected onSubmit() {
+    console.log(this.registerForm.value);
+    if (this.registerForm.valid) {
+    }
   }
 }

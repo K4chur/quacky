@@ -5,41 +5,119 @@
   <div class="fixed flex flex-col w-screen h-screen items-center justify-center text-white main">
 
     <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
       <div class="flex mb-5 justify-center text-3xl" style="font-family: 'BBH Bartle',sans-serif">
         Register
       </div>
+
       <div class="bg-gray-800 p-6 border border-blue-500 rounded-2xl w-96">
-        <div class="relative flex mb-10 mt-5 w-full">
+
+        <div class="relative flex flex-col mb-9 mt-5 w-full">
           <input class="border-b-2 focus:outline-none peer/email w-full focus:border-b-blue-400" id="email" type="email"
-                 formControlName="email" placeholder=""/>
-          <label class="absolute -translate-y-5 scale-75 hover:cursor-text duration-300 transform
-        peer-focus/email:-translate-y-5 peer-focus/email:scale-75 peer-focus/email:text-blue-400 origin-left
-        peer-placeholder-shown/email:translate-y-0 peer-placeholder-shown/email:scale-100 select-none font-mono"
-                 for="email">Email address </label>
+                 [formControl]="email" placeholder=""
+                 [class]="(email.invalid && (email.touched || email.dirty)) ?
+                  'border-b-red-400 focus:border-b-red-400' : 'border-b-2 focus:border-b-blue-400'"/>
+          <label for="email" class="absolute -translate-y-5 scale-75 hover:cursor-text duration-300 transform
+                              peer-focus/email:-translate-y-5 peer-focus/email:scale-75 peer-focus/email:text-blue-400 origin-left
+                              peer-placeholder-shown/email:translate-y-0 peer-placeholder-shown/email:scale-100 select-none font-mono"
+                 [class]="(email.invalid && (email.touched || email.dirty)) ?
+                  'text-red-400 peer-focus/email:text-red-400' : 'text-white'">Email address</label>
+          <p
+            class="text-red-400 scale-75 origin-left h-1 transition-opacity duration-500"
+            [class.opacity-0]="!(email.invalid && (email.touched || email.dirty))"
+            [class.opacity-100]="email.invalid && (email.touched || email.dirty)">
+
+            @if (email.errors?.['required']) {
+              Email is required
+            } @else if (email.errors?.['email']) {
+              Email is invalid
+            }
+          </p>
         </div>
-        <div class="relative flex mb-10 w-full">
+
+        <div class="relative flex flex-col mb-9 w-full">
           <input class="border-b-2 focus:outline-none peer/username w-full focus:border-b-blue-400" id="username"
-                 type="text" formControlName="username" placeholder="">
-          <label class="absolute -translate-y-5 scale-75 hover:cursor-text duration-300 transform
-        peer-focus/username:-translate-y-5 peer-focus/username:scale-75 peer-focus/username:text-blue-400 origin-left
-        peer-placeholder-shown/username:translate-y-0 peer-placeholder-shown/username:scale-100 select-none font-mono"
-                 for="username">Username </label>
+                 type="text" [formControl]="username" placeholder=""
+                 [class]="(username.invalid && (username.touched || username.dirty)) ?
+                  'border-b-red-400 focus:border-b-red-400' : 'border-b-2 focus:border-b-blue-400'"/>
+          <label for="username" class="absolute -translate-y-5 scale-75 hover:cursor-text duration-300 transform
+                                 peer-focus/username:-translate-y-5 peer-focus/username:scale-75 peer-focus/username:text-blue-400 origin-left
+                                 peer-placeholder-shown/username:translate-y-0 peer-placeholder-shown/username:scale-100 select-none font-mono"
+                 [class]="(username.invalid && (username.touched || username.dirty)) ?
+                  'text-red-400 peer-focus/username:text-red-400' : 'text-white'">Username</label>
+          <p
+            class="text-red-400 scale-75 origin-left h-1 transition-opacity duration-500"
+            [class.opacity-0]="!(username.invalid && (username.touched || username.dirty))"
+            [class.opacity-100]="username.invalid && (username.touched || username.dirty)">
+
+            @if (username.errors?.['required']) {
+              Username is required
+            } @else if (username.errors?.['minlength']) {
+              Min length is 6
+            } @else if (username.errors?.['maxlength']) {
+              Max length is 32
+            }
+          </p>
         </div>
-        <div class="relative flex mb-10 w-full">
+
+        <div class="relative flex flex-col mb-9 w-full">
           <input class="border-b-2 focus:outline-none peer/password w-full focus:border-b-blue-400" id="password"
-                 type="password" formControlName="password" placeholder="">
-          <label class="absolute -translate-y-5 scale-75 hover:cursor-text duration-300 transform
+                 type="password" [formControl]="password" placeholder=""
+                 [class]="(password.invalid && (password.touched || password.dirty))
+                   || (registerForm.hasError('mismatch') && (password.touched || password.dirty) && (confirmPassword.touched || confirmPassword.dirty) )?
+                  'border-b-red-400 focus:border-b-red-400' : 'border-b-2 focus:border-b-blue-400'"/>
+          <label for="password" class="absolute -translate-y-5 scale-75 hover:cursor-text duration-300 transform
         peer-focus/password:-translate-y-5 peer-focus/password:scale-75 peer-focus/password:text-blue-400 origin-left
         peer-placeholder-shown/password:translate-y-0 peer-placeholder-shown/password:scale-100 select-none font-mono"
-                 for="password">Password </label>
+                 [class]="(password.invalid && (password.touched || password.dirty))
+                   || (registerForm.hasError('mismatch') && (password.touched || password.dirty) && (confirmPassword.touched || confirmPassword.dirty) )?
+                  'text-red-400 peer-focus/password:text-red-400' : 'text-white'">Password </label>
+          <p
+            class="text-red-400 scale-75 origin-left h-1 transition-opacity duration-500"
+            [class.opacity-0]="!(password.invalid && (password.touched || password.dirty))"
+            [class.opacity-100]="password.invalid && (password.touched || password.dirty)
+             || (registerForm.hasError('mismatch') && (password.touched || password.dirty) && (confirmPassword.touched || confirmPassword.dirty) )">
+
+            @if (password.errors?.['required']) {
+              Password is required
+            } @else if (password.errors?.['minlength']) {
+              Min length is 6
+            } @else if (password.errors?.['maxlength']) {
+              Max length is 64
+            } @else if (registerForm.errors?.['mismatch']) {
+              Passwords do not match
+            }
+          </p>
         </div>
-        <div class="relative flex mb-10 w-full">
+
+        <div class="relative flex flex-col mb-9 w-full">
           <input class="border-b-2 focus:outline-none peer/confirmPassword w-full focus:border-b-blue-400"
-                 id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="">
-          <label class="absolute -translate-y-5 scale-75 hover:cursor-text duration-300 transform
+                 id="confirmPassword" type="password" [formControl]="confirmPassword" placeholder=""
+                 [class]="(confirmPassword.invalid && (confirmPassword.touched || confirmPassword.dirty))
+                   || (registerForm.hasError('mismatch') && (password.touched || password.dirty) && (confirmPassword.touched || confirmPassword.dirty) )?
+                  'border-b-red-400 focus:border-b-red-400' : 'border-b-2 focus:border-b-blue-400'"/>
+          <label for="confirmPassword" class="absolute -translate-y-5 scale-75 hover:cursor-text duration-300 transform
         peer-focus/confirmPassword:-translate-y-5 peer-focus/confirmPassword:scale-75 peer-focus/confirmPassword:text-blue-400 origin-left
         peer-placeholder-shown/confirmPassword:translate-y-0 peer-placeholder-shown/confirmPassword:scale-100 select-none font-mono"
-                 for="confirmPassword">Repeat Password </label>
+                 [class]="(confirmPassword.invalid && (confirmPassword.touched || confirmPassword.dirty))
+                   || (registerForm.hasError('mismatch') && (password.touched || password.dirty) && (confirmPassword.touched || confirmPassword.dirty) )?
+                  'text-red-400 peer-focus/confirmPassword:text-red-400' : 'text-white'">Repeat Password </label>
+          <p
+            class="text-red-400 scale-75 origin-left h-1 transition-opacity duration-500"
+            [class.opacity-0]="!(confirmPassword.invalid && (confirmPassword.touched || confirmPassword.dirty))"
+            [class.opacity-100]="(confirmPassword.invalid && (confirmPassword.touched || confirmPassword.dirty))
+            || (registerForm.hasError('mismatch') && (password.touched || password.dirty) && (confirmPassword.touched || confirmPassword.dirty) )">
+
+            @if (confirmPassword.errors?.['required']) {
+              Password confirmation is required
+            } @else if (confirmPassword.errors?.['minlength']) {
+              Min length is 6
+            } @else if (confirmPassword.errors?.['maxlength']) {
+              Max length is 64
+            } @else if (registerForm.errors?.['mismatch']) {
+              Passwords do not match
+            }
+          </p>
         </div>
 
         <div class="relative flex items-center justify-center mb-5 w-full gap-10">
@@ -55,8 +133,12 @@
         <button class="bg-blue-700 p-3 rounded-2xl w-1/2 cursor-pointer flex items-center justify-center gap-2
       transform duration-200 hover:bg-blue-600 hover:scale-105 font-mono" type="button" routerLink="/login">
           Login instead <img class="w-5" src="assets/common/login.svg" alt="Login Icon"/></button>
-        <button class="bg-blue-700 p-3 rounded-2xl w-1/2 cursor-pointer flex items-center justify-center gap-2
-      transform duration-200 hover:bg-blue-600 hover:scale-105 font-mono" type="submit">
+        <button
+          class="bg-blue-700 p-3 rounded-2xl w-1/2 flex items-center justify-center gap-2 font-mono"
+          type="submit"
+          [class]="registerForm.invalid ? 'transform duration-200 bg-gray-500 hover:bg-gray-500' : 'cursor-pointer bg-blue-700 transform duration-200 hover:bg-blue-600 hover:scale-105'"
+          [disabled]="registerForm.invalid">
+
           Register <img class="w-5" src="assets/common/new.svg" alt="Reg Icon"/></button>
       </div>
     </form>

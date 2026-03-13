@@ -1,0 +1,18 @@
+<button class="fixed flex cursor-pointer quacky w-20 ms-6 mt-6 z-10 rotate" type="button" routerLink="/"><img
+  class="w-20" src="assets/common/ducky_quacky.svg" alt="here was ducky"></button>
+
+<div class="fixed flex flex-row w-screen h-screen items-center justify-center text-white main gap-20">
+  <div>
+    <p class="text-6xl font-bbh" style="font-family: 'BBH Bartle',sans-serif"> 404 </p>
+    <p class="font-mono">You got lost, budy</p>
+  </div>
+
+  <div>
+    <div class="quacky mirror z-10 absolute cursor-pointer top-9/20 left-11/20" (click)="playQuack()">
+      <img class="w-45" src="assets/common/hammer.svg" alt="here was hummer">
+    </div>
+    <div class="quacky cursor-pointer" (click)="playQuack()">
+      <img class="w-100 " src="assets/common/ducky_quacky.svg" alt="here was ducky" height="740" width="700">
+    </div>
+  </div>
+</div>

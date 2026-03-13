@@ -3,6 +3,7 @@ import { Login } from './components/login/login';
 import { Register } from './components/register/register';
 import { Admin } from './components/admin/admin';
 import { Landing } from './components/landing/landing';
+import { ErrorPage } from './components/error-page/error-page.component';
 
 export const routes: Routes = [
   {
@@ -21,4 +22,12 @@ export const routes: Routes = [
     path: 'admin',
     component: Admin,
   },
+  {
+    path: '404',
+    component: ErrorPage,
+  },
+  {
+    path: '**',
+    redirectTo: '404',
+  }
 ];
