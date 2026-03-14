@@ -1,0 +1,22 @@
+<button class="fixed flex cursor-pointer quacky w-20 ms-6 mt-6 z-20 rotate" type="button" routerLink="/"><img
+  class="w-20" src="../../../../assets/common/ducky_quacky.svg" alt="here was ducky"></button>
+
+<div class="fixed flex flex-col w-screen h-screen justify-center items-center text-white main font-mono gap-5">
+  <p class="text-4xl" style="font-family: 'BBH Bartle',sans-serif"> Nearly there! </p>
+
+  <div class="flex flex-col justify-center items-center gap-5">
+    <p class="mb-4">
+      We’ve sent a verification link to <strong>(actual email here?) your email</strong>. <br>
+      Please click the link to verify your account.
+    </p>
+
+    <button class="bg-blue-700 p-3 rounded-2xl flex items-center justify-center gap-2 cursor-pointer group
+             transform duration-200 hover:bg-blue-600 hover:scale-105" (click)="resend()">
+      <i class="bi bi-arrow-repeat transform duration-200 group-hover:rotate-180"></i> Resend verification email
+    </button>
+
+    <p class="mt-3 mb-0 text-shadow-red-500 text-shadow-2xs">
+      Didn’t get it? Check your spam folder or try resending.
+    </p>
+  </div>
+</div>

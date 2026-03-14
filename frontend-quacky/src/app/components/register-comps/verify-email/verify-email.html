@@ -1,0 +1,46 @@
+<div class="fixed flex flex-col w-screen h-screen justify-center items-center main">
+
+  <div class="text-white font-mono bg-gray-800 p-6 border border-blue-500 rounded-2xl">
+  @switch (state) {
+    @case ('loading') {
+      <h2 class="mb-3"> <i class="bi bi-hourglass-split"></i> Verifying…</h2>
+      <p>Please wait while we confirm your email.</p>
+    }
+
+    @case ('ok') {
+      <div class="flex flex-row mb-3 gap-2"> <i class="bi bi-check-circle-fill fs-1 text-success"></i> <h2>Email verified</h2> </div>
+      <p class="mb-3">Redirecting to login in {{countdown}}…</p>
+      <button class="bg-blue-700 p-3 rounded-2xl w-full cursor-pointer flex items-center justify-center gap-5
+      transform duration-200 hover:bg-blue-600 hover:scale-105" (click)="goLogin()">Go to Login now <i class="bi bi-box-arrow-in-right mt-0.5"></i></button>
+    }
+
+    @case ('expired') {
+      <div class="mb-3 flex flex-row gap-2"><i class="bi bi-clock-history fs-1 text-warning"></i>  <h2 class="mb-2">Link expired</h2> </div>
+      <p class="mb-3">Your verification link has expired. <br/> Please request a new one from the registration page.</p>
+      <button class="bg-blue-700 p-3 mt-3 rounded-2xl w-full cursor-pointer flex items-center justify-center gap-5
+      transform duration-200 hover:bg-blue-600 hover:scale-105" routerLink="/register">Back to Register <i class="bi bi-box-arrow-in-down-left"></i></button>
+    }
+
+    @case ('invalid') {
+      <div class="mb-3 flex flex-row gap-2"><i class="bi bi-x-circle-fill fs-1 text-danger"></i> <h2 class="mb-2">Invalid link</h2></div>
+      <p class="mb-3">This verification token is not valid.<br/> Please request a new email.</p>
+      <button class="bg-blue-700 p-3 mt-3 rounded-2xl w-full cursor-pointer flex items-center justify-center gap-5
+      transform duration-200 hover:bg-blue-600 hover:scale-105" routerLink="/register">Back to Register <i class="bi bi-box-arrow-in-down-left"></i></button>
+    }
+
+    @case ('missing') {
+      <div class="mb-3 flex flex-row gap-2"><i class="bi bi-exclamation-triangle-fill fs-1 text-warning"></i> <h2 class="mb-2">No token found</h2> </div>
+      <p class="mb-3">The verification link is missing a token parameter.</p>
+      <button class="bg-blue-700 p-3 mt-3 rounded-2xl w-full cursor-pointer flex items-center justify-center gap-5
+      transform duration-200 hover:bg-blue-600 hover:scale-105" routerLink="/login">Go to Login <i class="bi bi-box-arrow-in-right mt-0.5"></i></button>
+    }
+
+    @default {
+      <div class="mb-3"><i class="bi bi-bug-fill fs-1 text-danger"></i></div>
+      <h2 class="mb-2">Something went wrong</h2>
+      <p class="text-muted">Please try again later or request a new email.</p>
+      <button class="btn btn-outline-secondary mt-3" routerLink="/login">Go to Login</button>
+    }
+  }
+  </div>
+</div>
