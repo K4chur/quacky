@@ -1,0 +1,14 @@
+.toast {
+  opacity: 1;
+  animation: toast-in 0.15s ease-out, toast-out 0.2s ease-in forwards;
+  animation-delay: 0s, 4.8s; /* fade out after 3s total */
+}
+
+@keyframes toast-in {
+  from { transform: translateY(-8px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes toast-out {
+  to { opacity: 0; transform: translateY(-6px); }
+}

@@ -1,0 +1,13 @@
+<div class="fixed end font-mono z-1001 text-white p-3">
+
+  @for (toast of toasts$ | async; track toast.id) {
+    <div class="toast text-white max-w-96 border rounded-2xl bg-gray-800 mb-3">
+      <div class="border-b flex flex-row items-center justify-between">
+        <div class="flex flex-row gap-2 p-3 {{levelClass(toast.level)}}">  <i class="bi {{levelIcon(toast.level)}}"></i> <p> {{toast.title}} </p> </div>
+        <button class="cursor-pointer rounded-tr-2xl right-0 border-s p-3 hover:bg-blue-400 group" type="button" (click)="remove(toast)"><i class="cursor-pointer inline-block bi bi-x-lg transform duration-200 group-hover:rotate-180"></i></button>
+      </div>
+      <div class="p-3">{{toast.message}}</div>
+    </div>
+  }
+
+</div>
