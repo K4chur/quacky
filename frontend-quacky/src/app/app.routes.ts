@@ -6,6 +6,7 @@ import { Landing } from './components/landing/landing';
 import { ErrorPage } from './components/error-page/error-page.component';
 import { ConfirmEmail } from './components/register-comps/confirm-email/confirm-email.component';
 import { VerifyEmail } from './components/register-comps/verify-email/verify-email';
+import { Panel } from './components/main-panel/panel/panel';
 
 export const routes: Routes = [
   {
@@ -15,6 +16,10 @@ export const routes: Routes = [
   {
     path: 'login',
     component: Login,
+  },
+  {
+    path: 'chatting',
+    component: Panel,
   },
   {
     path: 'register',

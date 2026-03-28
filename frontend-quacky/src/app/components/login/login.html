@@ -67,7 +67,8 @@
         Reg instead <i class="bi bi-box-arrow-in-down-left"></i> </button>
       <button class="p-3 rounded-2xl w-1/2 flex items-center justify-center gap-2 font-mono" type="submit"
       [class]="loginForm.invalid ? 'transform duration-200 bg-gray-500 hover:bg-gray-500' : 'cursor-pointer bg-blue-700 transform duration-200 hover:bg-blue-600 hover:scale-105'"
-      [disabled]="loginForm.invalid">
+      [disabled]="loginForm.invalid"
+      routerLink="/chatting">
         Login <i class="bi bi-box-arrow-in-right mt-0.5"></i></button>
     </div>
   </form>
