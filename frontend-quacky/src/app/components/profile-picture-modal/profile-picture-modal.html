@@ -1,36 +1,75 @@
 @if (shown()) {
-  <div class="fixed w-screen h-screen flex items-center justify-center text-white font-mono"
-       [class]="imageChangedEvent ? 'transform duration-700 blur-2xl' : 'transform duration-700'">
-    <div class="bg-gray-800 border border-blue-500 rounded-2xl">
-      <div class="relative flex rounded-t-2xl border-b border-b-blue-500 w-full">
-        <p class="text-2xl m-3 p-1"> Profile picture</p>
-        <div
-          class="cursor-pointer absolute inset-y-0 right-0 border-s border-s-blue-500 duration-300 hover:bg-blue-400 rounded-s-2xl rounded-t-2xl group"
-          (click)="onClose()">
-          <button class="m-5 cursor-pointer" type="button"> <i class="bi bi-x-lg inline-block transform duration-300 group-hover:rotate-90"></i></button>
+  <!-- Main Avatar Select Panel Backdrop Blur Overlay -->
+  <div class="fixed inset-0 w-screen h-screen z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-sm animate-fade-in"
+       [class]="imageChangedEvent ? 'transform duration-700 blur-2xl pointer-events-none' : 'transform duration-700'">
+
+    <!-- Modal Card Wrapper -->
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl max-w-xl shadow-2xl relative animate-scale-up">
+
+      <!-- Modal Header -->
+      <div class="relative flex items-center justify-between rounded-t-2xl border-b border-slate-800/80 w-full p-4 pr-16 bg-slate-950/20">
+        <div class="flex items-center gap-2">
+          <i class="bi bi-person-circle text-amber-500 text-lg"></i>
+          <p class="text-base font-bold text-slate-100 tracking-wide">Profile Picture</p>
         </div>
+
+        <!-- Close X Button -->
+        <button
+          class="absolute top-0 right-0 h-full w-14 border-l border-slate-800 hover:bg-slate-800 hover:text-amber-400 transition-all duration-300 rounded-tr-2xl cursor-pointer flex items-center justify-center group"
+          (click)="onClose()"
+        >
+          <i class="bi bi-x-lg text-sm text-white transform duration-300 group-hover:rotate-90 group-hover:text-amber-400"></i>
+        </button>
       </div>
 
-      <div class="flex flex-row gap-20">
+      <!-- Avatar Picker & Upload Layout -->
+      <div class="flex flex-col md:flex-row gap-8 p-6">
 
-        <div class="flex flex-col m-5">
-          <div class="grid grid-cols-3 gap-5 w-fit">
+        <!-- Default Avatars Grid (Left) -->
+        <div class="flex flex-col">
+          <span class="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Choose a Default Outfit</span>
+          <div class="grid grid-cols-3 gap-3 w-fit">
             @for (pfPic of defaultPfPics; track $index) {
-              <img class="cursor-pointer rounded-full w-24 border-2"
-                   [class]="profilePath() == pfPic ? 'border-blue-800' : ''" src="{{pfPic}}"
-                   alt="One of default avatars"
-                   (click)="picUpdate(pfPic, null)"/>
+              <button
+                class="cursor-pointer rounded-full overflow-hidden border-2 p-0.5 transition-all duration-300 relative bg-slate-850"
+                [ngClass]="profilePath() == pfPic
+                  ? 'border-amber-500 ring-4 ring-amber-500/20 scale-105'
+                  : 'border-slate-800 hover:border-slate-650 hover:scale-103'"
+                (click)="picUpdate(pfPic, null)"
+              >
+                <img class="w-16 h-16 rounded-full object-cover" [src]="pfPic" alt="Default Avatar option"/>
+              </button>
             }
           </div>
         </div>
 
-        <div class="flex flex-col m-5 items-center gap-10">
-          <img class="rounded-full w-25 h-25 border-2 border-blue-800 " [src]="profilePath()" alt="Current profile picture"/>
-          <button class="bg-blue-700 p-3 rounded-2xl cursor-pointer flex items-center justify-center gap-2
-      transform duration-200 hover:bg-blue-600 hover:scale-105 font-mono" type="button" (click)="triggerInput()">
-            Upload photo <i class="bi bi-upload"></i></button>
+        <!-- Divider for desktop layout -->
+        <div class="hidden md:block w-[1px] bg-slate-800/60 self-stretch"></div>
+
+        <!-- Custom Upload (Right) -->
+        <div class="flex flex-col items-center justify-center gap-6 px-4">
+          <span class="block text-xs font-bold text-slate-400 uppercase tracking-widest self-start md:self-center">Or Upload Photo</span>
+
+          <div class="relative group">
+            <div class="w-24 h-24 rounded-full overflow-hidden border-2 border-amber-500/50 p-0.5 bg-slate-850 shadow-md">
+              <img class="w-full h-full rounded-full object-cover" [src]="profilePath()" alt="Current Profile Picture"/>
+            </div>
+            <span class="absolute bottom-0 right-0 block h-6 w-6 rounded-full bg-emerald-500 border-2 border-slate-900 flex items-center justify-center text-[10px] text-white">
+              <i class="bi bi-check-lg"></i>
+            </span>
+          </div>
+
+          <!-- File Upload Trigger Button -->
+          <button
+            class="bg-slate-800/80 border border-slate-700/60 px-5 py-2.5 rounded-xl text-slate-200 cursor-pointer flex items-center justify-center gap-2 transform duration-250 hover:bg-slate-700/80 hover:border-amber-500/40 hover:scale-105 font-mono text-xs font-bold shadow-sm"
+            type="button"
+            (click)="triggerInput()"
+          >
+            Upload Photo <i class="bi bi-upload"></i>
+          </button>
         </div>
 
+        <!-- Hidden Native File Input -->
         <input type="file" #fileInput class="hidden" accept="image/png, image/jpeg" (change)="fileUpdate($event)"/>
 
       </div>
@@ -38,23 +77,40 @@
     </div>
   </div>
 
-  <div class="fixed w-screen h-screen flex items-center justify-center text-white font-mono z-10"
+  <!-- Image Cropper Card Overlay -->
+  <div class="fixed inset-0 w-screen h-screen z-50 flex items-center justify-center bg-slate-950/80 backdrop-blur-md animate-fade-in"
        [class]="imageChangedEvent ? 'visible' : 'hidden'">
-    <div class="flex flex-col bg-gray-800 border border-blue-500 w-96 h-fit p-6 ">
-      <image-cropper class="p-6 bg-gray-800 [--cropper-overlay-color:#1E2939] [--cropper-color:#000000]"
-                     [imageChangedEvent]="imageChangedEvent"
-                     [maintainAspectRatio]="true"
-                     [aspectRatio]="1"
-                     backgroundColor="#1e2939"
-                     format="png"
-                     (imageCropped)="imageCropped($event)">
+
+    <div class="flex flex-col bg-slate-900 border border-slate-800 w-96 p-6 rounded-2xl shadow-2xl relative animate-scale-up">
+
+      <!-- Cropper Title Header -->
+      <div class="flex items-center gap-2 mb-4">
+        <i class="bi bi-crop text-amber-500 text-lg"></i>
+        <h3 class="text-sm font-bold text-slate-100 tracking-wide">Crop Profile Photo</h3>
+      </div>
+
+      <!-- Ngx-Image-Cropper Box -->
+      <div class="rounded-xl overflow-hidden bg-slate-950 border border-slate-850 p-2">
+        <image-cropper
+          class="[--cropper-overlay-color:#0f172a80] [--cropper-outline-color:#fbbf24]"
+          [imageChangedEvent]="imageChangedEvent"
+          [maintainAspectRatio]="true"
+          [aspectRatio]="1"
+          backgroundColor="#020617"
+          format="png"
+          (imageCropped)="imageCropped($event)"
         >
-      </image-cropper>
-      <button class="bg-blue-700 mt-5 p-3 rounded-2xl cursor-pointer flex items-center justify-center
-                    transform duration-200 hover:bg-blue-600 hover:scale-105" (click)="confirmCrop()">Confirm
+        </image-cropper>
+      </div>
+
+      <!-- Confirm Button -->
+      <button
+        class="bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-950 mt-5 p-3 rounded-2xl cursor-pointer flex items-center justify-center font-mono text-xs md:text-sm font-black shadow-md transition-all duration-250 hover:from-amber-400 hover:to-yellow-500 hover:scale-103 hover:shadow-[0_0_15px_rgba(245,158,11,0.25)]"
+        (click)="confirmCrop()"
+      >
+        Confirm Selection <i class="bi bi-check2-circle ml-1.5 text-base"></i>
       </button>
     </div>
-
 
   </div>
 

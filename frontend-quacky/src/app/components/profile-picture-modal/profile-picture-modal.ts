@@ -1,11 +1,11 @@
 import { Component, ElementRef, input, output, ViewChild } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ImageCroppedEvent, ImageCropperComponent } from 'ngx-image-cropper';
 import { DomSanitizer } from '@angular/platform-browser';
-import { randomUUID } from 'node:crypto';
 
 @Component({
   selector: 'app-profile-picture-modal',
-  imports: [ImageCropperComponent],
+  imports: [ImageCropperComponent, CommonModule],
   templateUrl: './profile-picture-modal.html',
   styleUrl: './profile-picture-modal.css',
 })

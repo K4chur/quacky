@@ -1,0 +1,384 @@
+/* Custom premium scrollbars for the application */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.05);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(245, 158, 11, 0.15);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 158, 11, 0.4);
+}
+
+/* Animations */
+.animate-fade-in {
+  animation: fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.animate-scale-up {
+  animation: scaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-pulse-slow {
+  animation: pulseSlow 4s ease-in-out infinite;
+}
+
+/* Spin gear icon on hover */
+.animate-hover-rotate {
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.animate-hover-rotate:hover {
+  transform: rotate(90deg);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    transform: scale(0.94);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(16px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulseSlow {
+  0%, 100% {
+    opacity: 0.95;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.7;
+    transform: translateY(-4px);
+  }
+}
+
+/* Hover and active scales for interactive elements */
+.hover\:scale-103:hover {
+  transform: scale(1.03);
+}
+
+.hover\:scale-105:hover {
+  transform: scale(1.05);
+}
+
+.active\:scale-97:active {
+  transform: scale(0.97);
+}
+
+.active\:scale-95:active {
+  transform: scale(0.95);
+}
+
+/* Line clamping support */
+.line-clamp-1 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+
+/* ==========================================================================
+   LIGHT THEME OVERRIDES
+   ========================================================================== */
+
+/* Outer root layout light background */
+.light-theme {
+  background-color: #f8fafc; /* slate-50 */
+  color: #1e293b; /* slate-800 */
+}
+
+/* Sidebar styling for light mode */
+.light-theme aside {
+  background: rgba(241, 245, 249, 0.85); /* slate-100 */
+  border-right-color: rgba(226, 232, 240, 0.8); /* slate-200 */
+}
+
+.light-theme aside h2,
+.light-theme aside h3,
+.light-theme aside h4,
+.light-theme aside .text-slate-100 {
+  color: #0f172a; /* slate-900 */
+}
+
+.light-theme aside .text-slate-400,
+.light-theme aside .text-slate-500 {
+  color: #64748b; /* slate-500 */
+}
+
+/* User profile box backdrops */
+.light-theme aside .bg-slate-950\/40 {
+  background: rgba(255, 255, 255, 0.6);
+  border-bottom-color: rgba(226, 232, 240, 0.6);
+}
+
+.light-theme aside .bg-slate-950\/20 {
+  background: rgba(248, 250, 252, 0.45);
+}
+
+/* Selected chat details header */
+.light-theme aside .bg-slate-900\/30 {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.light-theme aside .border-b-2.border-amber-500 {
+  border-color: #d97706; /* amber-600 */
+  color: #d97706;
+}
+
+/* List elements, hover states and borders */
+.light-theme aside .hover\:bg-slate-800\/40:hover {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(226, 232, 240, 0.6);
+}
+
+.light-theme aside .border-slate-800\/80 {
+  border-color: rgba(226, 232, 240, 0.8);
+}
+
+.light-theme aside .border-slate-850 {
+  border-color: rgba(226, 232, 240, 0.8);
+}
+
+.light-theme aside .bg-slate-900\/40 {
+  background: rgba(255, 255, 255, 0.7);
+  border-color: rgba(226, 232, 240, 0.6);
+}
+
+.light-theme aside .bg-slate-900\/40:hover {
+  background: #ffffff;
+  border-color: rgba(245, 158, 11, 0.35);
+}
+
+.light-theme aside .bg-slate-800\/30 {
+  background: rgba(255, 255, 255, 0.85);
+  border-color: rgba(226, 232, 240, 0.8);
+  color: #475569;
+}
+
+.light-theme aside .bg-slate-800\/30:hover {
+  background: rgba(241, 245, 249, 0.95);
+  color: #0f172a;
+}
+
+/* Main Area and chat panel right container */
+.light-theme main {
+  background-color: rgba(241, 245, 249, 0.45);
+}
+
+.light-theme main header {
+  background: rgba(255, 255, 255, 0.7);
+  border-bottom-color: rgba(226, 232, 240, 0.8);
+}
+
+.light-theme main header .bg-slate-950\/10 {
+  background: rgba(241, 245, 249, 0.7);
+  color: #d97706; /* amber-600 */
+}
+
+/* Horizontal bubbles */
+.light-theme main header .bg-slate-800 {
+  background: #ffffff;
+  border-color: rgba(226, 232, 240, 0.8);
+}
+
+.light-theme main header button:hover .bg-slate-850 {
+  border-color: rgba(203, 213, 225, 0.8);
+}
+
+/* Active sub banner Inside chat */
+.light-theme main .bg-slate-950\/20 {
+  background: rgba(255, 255, 255, 0.75);
+  border-bottom-color: rgba(226, 232, 240, 0.8);
+}
+
+.light-theme main h3 {
+  color: #0f172a;
+}
+
+.light-theme main .text-slate-400 {
+  color: #64748b;
+}
+
+/* Chat logs timeline scrollable container */
+.light-theme main #messages-container {
+  background: rgba(248, 250, 252, 0.55);
+}
+
+/* Message bubbles list */
+.light-theme main .bubble-card:not(.bg-gradient-to-br) {
+  background: #ffffff;
+  border-color: rgba(226, 232, 240, 0.9);
+  color: #0f172a;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+.light-theme main .text-slate-500 {
+  color: #94a3b8;
+}
+
+/* Input boxes and footer area */
+.light-theme main footer {
+  background: rgba(255, 255, 255, 0.8);
+  border-top-color: rgba(226, 232, 240, 0.8);
+}
+
+.light-theme main .input-field {
+  background: #ffffff;
+  border-color: rgba(203, 213, 225, 0.8);
+  color: #0f172a;
+}
+
+.light-theme main .input-field:focus {
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.1);
+}
+
+/* Settings and logout control button styling overrides */
+.light-theme .bg-slate-800\/60 {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(203, 213, 225, 0.7);
+  color: #475569;
+}
+
+.light-theme .bg-slate-800\/60:hover {
+  background: rgba(241, 245, 249, 0.95);
+  color: #0f172a;
+  border-color: rgba(203, 213, 225, 0.9);
+}
+
+/* Welcome Center Splash page overrides */
+.light-theme .bg-slate-900\/10 {
+  background: rgba(241, 245, 249, 0.4);
+}
+
+.light-theme .quacky .bg-slate-900\/80 {
+  background: #ffffff;
+  border-color: rgba(226, 232, 240, 0.8);
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+}
+
+.light-theme .bg-amber-500\/5 {
+  background-color: rgba(245, 158, 11, 0.07);
+}
+
+.light-theme .bg-teal-500\/5 {
+  background-color: rgba(20, 184, 166, 0.05);
+}
+
+.light-theme .alert-tip {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(226, 232, 240, 0.8);
+}
+
+.light-theme .splash-desc {
+  color: #475569;
+}
+
+/* Modals overlays styling overrides (Settings & Add Chat) */
+.light-theme .fixed.bg-slate-950\/80 {
+  background: rgba(15, 23, 42, 0.35); /* semi-transparent blur overlay */
+}
+
+.light-theme .modal-card {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: rgba(226, 232, 240, 0.9);
+  color: #0f172a;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+}
+
+.light-theme .modal-card .modal-title {
+  color: #0f172a;
+}
+
+.light-theme .modal-card .select-label {
+  color: #475569;
+}
+
+.light-theme .modal-card .input-field {
+  background: #ffffff;
+  border-color: rgba(203, 213, 225, 0.8);
+  color: #0f172a;
+}
+
+.light-theme .modal-card .input-field:focus {
+  border-color: #f59e0b;
+}
+
+.light-theme .modal-card .choice-avatar {
+  background: #f1f5f9;
+  border-color: rgba(226, 232, 240, 0.8);
+}
+
+/* Add chat checkbox items overrides */
+.light-theme .modal-card .contact-invite-row:not(.bg-amber-500\/5) {
+  background: rgba(241, 245, 249, 0.35);
+  border-color: rgba(226, 232, 240, 0.8);
+}
+
+.light-theme .modal-card .contact-invite-row:not(.bg-amber-500\/5):hover {
+  background: #ffffff;
+  border-color: rgba(203, 213, 225, 0.8);
+}
+
+.light-theme .modal-card .contact-invite-row .contact-avatar {
+  background: #f1f5f9;
+  border-color: rgba(226, 232, 240, 0.8);
+}
+
+.light-theme .modal-card .contact-invite-row .contact-name {
+  color: #1e293b;
+}
+
+.light-theme .modal-card .contact-invite-row .checkbox-box:not(.bg-amber-500) {
+  border-color: rgba(203, 213, 225, 0.8);
+}
+
+.light-theme .modal-card .border-style {
+  border-color: rgba(226, 232, 240, 0.8);
+}
+
+.light-theme .modal-card .bg-toggle:not(.bg-amber-500) {
+  background: #e2e8f0;
+}
